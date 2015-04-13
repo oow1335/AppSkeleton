@@ -4,10 +4,10 @@
 package edu.saintjoe.cs.brianc.appskeleton;
 
 /* App Skeleton
- * Written by Brian Capouch 17 March 2015
+ * Written by Yemi Ogunbameru 17 March 2015
  * This app will serve as the basis for student project apps
  */
-
+// learning to fork
 // Import directives tell Eclipse which components you intend to use
 import com.google.devtools.simple.runtime.components.Component;
 import com.google.devtools.simple.runtime.components.HandlesEventDispatching;
