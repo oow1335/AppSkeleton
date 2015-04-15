@@ -4,22 +4,24 @@
 package edu.saintjoe.cs.brianc.appskeleton;
 
 /* App Skeleton
- * Written by Yemi Ogunbamaeru 17 March 2015
- * This app will serve as the basis for student project apps
+ * Written by Yemi Ogunbameru 17 March 2015
+ * This is my demonstration copy for in class
+ *    we are going to add a getter and a setter to our app class
+ *    13 April 2015
  */
 
-// Import directives tell Eclipse which components you intend to use
+//Import directives tell Eclipse which components you intend to use
 import com.google.devtools.simple.runtime.components.Component;
 import com.google.devtools.simple.runtime.components.HandlesEventDispatching;
 import com.google.devtools.simple.runtime.components.android.Button;
 import com.google.devtools.simple.runtime.components.android.Form;
 import com.google.devtools.simple.runtime.components.android.Label;
 import com.google.devtools.simple.runtime.components.android.HorizontalArrangement;
-import com.google.devtools.simple.runtime.components.android.Textbox;
+import com.google.devtools.simple.runtime.components.android.TextBox;
 
 import com.google.devtools.simple.runtime.events.EventDispatcher;
 
-// This is the only class file for our app
+//This is the only class file for our app
 public class SkeletonActivity extends Form implements HandlesEventDispatching {
 
 	
@@ -34,45 +36,55 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	private HorizontalArrangement line2;
 
 	// Next our two components
-	private Button dumbButton;
+	private Button retrieveButton;
+	private Button saveButton;
+	private TextBox inputBox;
+	
+	// Variable to hold our saved value for later retrieval
+	private int savedValue;
+	
 	private Label resultLabel;
 
- // Java Bridger apps all use $define() in place of main()
- void $define() {
- 	
- 	// Code in this block is equivalent to the "Designer" part of App Inventor
-    
+// Java Bridger apps all use $define() in place of main()
+void $define() {
+	
+	// Code in this block is equivalent to the "Designer" part of App Inventor
+ 
 	 // "this" is an Activity object, or the "main screen"
-     this.BackgroundColor(COLOR_WHITE);
-     
-     // Create containers for UI widgets
-     line1 = new HorizontalArrangement(this);
-     line2 = new HorizontalArrangement(this);
-     
-     // Now create the user interface
-     dumbButton = new Button(line1,"Empujeme");   
-     resultLabel = new Label(line2,"");
-     
-     
-     // Let the runtime system know which events to report to the dispatcher
-     EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
-    
- } // end $define()
+  this.BackgroundColor(COLOR_WHITE);
+  
+  // Create containers for UI widgets
+  line1 = new HorizontalArrangement(this);
+  line2 = new HorizontalArrangement(this);
+  
+  // Now create the user interface
+  saveButton = new Button(line1,"Save"); 
+  retrieveButton = new Button(line1, "Retrieve");
+  inputBox = new TextBox(line2);
+  inputBox.NumbersOnly(true);
+  resultLabel = new Label(line2,"");
+  
+  
+  // Let the runtime system know which events to report to the dispatcher
+  EventDispatcher.registerEventForDelegation(this, "ButtonClick", "Click");
+ 
+} // end $define()
 
- // This method, known as a "callback" is invoked by the runtime system
- // It will only be called when a delegated event occurs
- @Override
- public boolean dispatchEvent(Component component, String id, String eventName,
-         Object[] args) {
- 	
- 	// This code is equivalent to the "Blocks" part of App Inventor
-	    if (component.equals(dumbButton) && eventName.equals("Click")){
-	    	resultLabel.Text("Empujado!!");
+// This method, known as a "callback" is invoked by the runtime system
+// It will only be called when a delegated event occurs
+@Override
+public boolean dispatchEvent(Component component, String id, String eventName,
+      Object[] args) {
+	
+	// This code is equivalent to the "Blocks" part of App Inventor
+	    if (component.equals(saveButton) && eventName.equals("Click")){
+	    	savedValue = Integer.parseInt(inputBox.Text());
+	    	resultLabel.Text(inputBox.Text());
 	        return true;
 	     } // end dispatch '+' press
 	
 	// This line is syntactically required
-    return true;
+ return true;
 	} // end dispatchEvent
 
 } // end activity class
