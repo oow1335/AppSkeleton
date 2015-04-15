@@ -35,13 +35,14 @@ public class SkeletonActivity extends Form implements HandlesEventDispatching {
 	private HorizontalArrangement line1;
 	private HorizontalArrangement line2;
 
-	// Next our two components
+	// Next our three components
 	private Button retrieveButton;
 	private Button saveButton;
 	private TextBox inputBox;
 	
 	// Variable to hold our saved value for later retrieval
 	private int savedValue;
+	private String tempString;
 	
 	private Label resultLabel;
 
@@ -79,10 +80,18 @@ public boolean dispatchEvent(Component component, String id, String eventName,
 	// This code is equivalent to the "Blocks" part of App Inventor
 	    if (component.equals(saveButton) && eventName.equals("Click")){
 	    	savedValue = Integer.parseInt(inputBox.Text());
-	    	resultLabel.Text(inputBox.Text());
+	    	// tempString = Integer.toString(savedValue);
+	    	resultLabel.Text("Input value has been saved");
+	    	inputBox.Text("");
 	        return true;
-	     } // end dispatch '+' press
-	
+	     } // 
+	    
+	    if (component.equals(retrieveButton) && eventName.equals("Click")){
+	    	resultLabel.Text("");
+	    	tempString = Integer.toString(savedValue);
+	    	resultLabel.Text(tempString);
+	        return true;
+	     } // 
 	// This line is syntactically required
  return true;
 	} // end dispatchEvent
